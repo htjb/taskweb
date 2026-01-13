@@ -55,12 +55,15 @@ def home():
       <h1>TaskServe</h1>
       <body>
         <form method="POST" action="/add" class="add-form">
-          <input name="desc" placeholder="New task description" />
-          <input name="tags" placeholder="Enter tags as +tag" />
-          <input name="project" placeholder="Enter project" />
-          <input name="due" placeholder="Due data?" />
+          <input id="input-add" name="desc" placeholder="New task description +tags pro: due:" />
           <button type="submit">Add</button>
         </form>
+        <form method="POST" action="/mod" class="mod-form">
+          <input id="input-id" name="identity" placeholder="ID" />
+          <input id="input-mod" name="modification" placeholder="Enter modification..." />
+          <button type="submit">Mod</button>
+        </form>
+
         <table>
             <thead>
                 <tr>
@@ -84,12 +87,16 @@ def home():
 @app.route('/add', methods=["POST"])
 def add():
     desc = request.form.get("desc", "")
-    tags = request.form.get("tags", "")
-    project = request.form.get("project", "")
-    due = request.form.get("due", "")
     if desc.strip():
-        subprocess.run(["task", "add", desc, 
-                        tags, f"pro:{project}", f"due:{due}"])
+        subprocess.run(["task", "add", desc])
+    return redirect("/")
+
+@app.route('/mod', methods=["POST"])
+def modification():
+    identity = request.form.get("identity", "")
+    mod = request.form.get("modification", "")
+    if mod.strip() and identity.strip():
+        subprocess.run(["task", identity, mod])
     return redirect("/")
 
 @app.route('/delete', methods=["POST"])
