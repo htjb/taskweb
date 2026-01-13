@@ -55,7 +55,10 @@ def home():
       <h1>TaskServe</h1>
       <body>
         <form method="POST" action="/add" class="add-form">
-          <input id="input-add" name="desc" placeholder="New task description +tags pro: due:" />
+          <input id="input-add" name="desc" placeholder="New task description" />
+          <input name="tags" placeholder="Enter tags as +tag" />
+          <input name="project" placeholder="Enter project" />
+          <input name="due" placeholder="Due data?" />
           <button type="submit">Add</button>
         </form>
         <form method="POST" action="/mod" class="mod-form">
@@ -87,8 +90,13 @@ def home():
 @app.route('/add', methods=["POST"])
 def add():
     desc = request.form.get("desc", "")
+    tags = request.form.get("tags", "")
+    project = request.form.get("project", "")
+    due = request.form.get("due", "")
     if desc.strip():
-        subprocess.run(["task", "add", desc])
+        subprocess.run(["task", "add", desc, 
+                        tags, f"pro:{project}",
+                        f"due:{due}"])
     return redirect("/")
 
 @app.route('/mod', methods=["POST"])
