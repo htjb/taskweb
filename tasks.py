@@ -126,7 +126,7 @@ if __name__ == '__main__':
         config = yaml.load('~/.config/taskServe.yml')
         hostIP = config['host_IP']
     except (FileNotFoundError, KeyError) as e:
-        print("TASKSERVE: No IP specified in '~/.config/taskServe'. Defaulting to '0.0.0.0'.")
+        print("TASKSERVE: No host_IP specified in '~/.config/taskServe.yml'. Defaulting to '0.0.0.0'.")
         hostIP='0.0.0.0'
 
     app.run(host=config['host_IP'], port=5678)
