@@ -122,4 +122,5 @@ def complete():
     return redirect("/")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5678)
+    config = yaml.load('~/.config/taskServe.yml')
+    app.run(host=config['host_IP'], port=5678)
