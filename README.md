@@ -9,9 +9,11 @@ After=network.target
 
 [Service]
 User=harry
-WorkingDirectory=/home/harry
-ExecStart=/usr/bin/python3 /home/harry/taskweb/tasks.py
+WorkingDirectory=/home/harry/taskweb
+# Activate venv and run CLI
+ExecStart=/bin/bash -c 'source /home/harry/taskweb/envtaskserve/      bin/activate && exec taskserve'
 Restart=always
+Environment=PATH=/home/harry/taskweb/envtaskserve/bin:/usr/bin:/      bin
 
 [Install]
 WantedBy=multi-user.target
