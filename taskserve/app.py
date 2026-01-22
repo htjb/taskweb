@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, flash
 import subprocess
 import json
 
@@ -41,6 +41,7 @@ def home():
           <button type="submit">Mod</button>
         </form>
         <a href="{ url_for('burndown') }">Burndown Daily</a>
+        <div id="output-box">dummy text</div>
         <table>
             <thead>
                 <tr>

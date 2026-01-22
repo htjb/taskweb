@@ -65,3 +65,9 @@ form {
     white-space: pre;
     font-family: monospace;
   }
+
+#output-box {
+    border: 2px solid #ccc;
+    width: 80%;
+    height: 10%;
+}
