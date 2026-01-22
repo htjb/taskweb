@@ -21,11 +21,11 @@ def render_task_row(task):
         <td>{due}</td>
         <td>{urgency}</td>
         <td>
-            <form method="POST" action="/delete" onsubmit="return confirm('Delete this task?');">
+            <form method="POST" action="/delete" onsubmit="return confirm('Delete task {task['id']}?');">
                 <input type="hidden" name="id" value="{task['id']}">
                 <button type="submit">D</button>
             </form>
-            <form method="POST" action="/complete" onsubmit="return confirm('Complete this task?');">
+            <form method="POST" action="/complete" onsubmit="return confirm('Complete task {task['id']}?');">
                 <input type="hidden" name="id" value="{task['id']}">
                 <button type="submit">C</button>
             </form>
