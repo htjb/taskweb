@@ -29,14 +29,16 @@ def render_task_row(task):
         <td>{due}</td>
         <td>{urgency}</td>
         <td>
-            <form method="POST" action="/delete" onsubmit="return confirm('Delete task {task['id']}?');">
-                <input type="hidden" name="id" value="{task['id']}">
-                <button type="submit">Del</button>
-            </form>
-            <form method="POST" action="/complete" onsubmit="return confirm('Complete task {task['id']}?');">
-                <input type="hidden" name="id" value="{task['id']}">
-                <button type="submit">Com</button>
-            </form>
+            <div style="display: flex; gap: 4px;">
+                <form method="POST" action="/complete" onsubmit="return confirm('Done?');">
+                    <input type="hidden" name="id" value="{task['id']}">
+                    <button type="submit" style="background-color: #28a745;">✓</button>
+                </form>
+                <form method="POST" action="/delete" onsubmit="return confirm('Delete?');">
+                    <input type="hidden" name="id" value="{task['id']}">
+                    <button type="submit" style="background-color: #dc3545;">✕</button>
+                </form>
+            </div>
         </td>
     </tr>
     """
@@ -77,22 +79,24 @@ def home():
         </form>
         <a href="{ url_for('burndown') }">Burndown Daily</a>
         <p>Number of tasks: {len(tasks)}</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>Tags</th>
-                    <th>Project</th>
-                    <th>Due</th>
-                    <th>Urgency</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {rows}
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Tags</th>
+                        <th>Project</th>
+                        <th>Due</th>
+                        <th>Urgency</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </table>
+        </div>
       </body>
     </html>
     """
