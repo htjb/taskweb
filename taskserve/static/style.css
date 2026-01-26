@@ -1,5 +1,7 @@
 body {
+    display: flex-column;
     font-family: sans-serif;
+    background-color: #d1d1d1;
 }
 
 h1 {
@@ -8,7 +10,7 @@ h1 {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 100vw;
     margin-top: 10px;
 }
 
@@ -30,26 +32,6 @@ form {
     margin: 0;
     padding: 0;
 }
-
-.add-form {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.add-form {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-
-.mod-form {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
 
 #input-id {
     width:10%;

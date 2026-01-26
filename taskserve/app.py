@@ -12,8 +12,16 @@ def render_task_row(task):
     tags = " ".join(task.get('tags', []))
     urgency = task.get('urgency', 0)
 
+    if urgency <5:
+        color = '#d1d1d1'
+    elif urgency <10:
+        color = '#ffdd78'
+    else:
+        color = '#ff5d52'
+
+
     return f"""
-    <tr>
+    <tr style="background-color: {color}">
         <td>{task['id']}</td>
         <td>{task['description']}</td>
         <td>{tags}</td>
@@ -23,11 +31,11 @@ def render_task_row(task):
         <td>
             <form method="POST" action="/delete" onsubmit="return confirm('Delete task {task['id']}?');">
                 <input type="hidden" name="id" value="{task['id']}">
-                <button type="submit">D</button>
+                <button type="submit">Del</button>
             </form>
             <form method="POST" action="/complete" onsubmit="return confirm('Complete task {task['id']}?');">
                 <input type="hidden" name="id" value="{task['id']}">
-                <button type="submit">C</button>
+                <button type="submit">Com</button>
             </form>
         </td>
     </tr>
@@ -51,6 +59,7 @@ def home():
     <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{url_for('static', filename='style.css')}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
       <h1>TaskServe</h1>
       <body>
@@ -67,6 +76,7 @@ def home():
           <button type="submit">Mod</button>
         </form>
         <a href="{ url_for('burndown') }">Burndown Daily</a>
+        <p>Number of tasks: {len(tasks)}</p>
         <table>
             <thead>
                 <tr>
